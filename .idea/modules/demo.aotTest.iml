@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.system.module.type="sourceSet" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
+    <output url="file://$MODULE_DIR$/../../userdao/build/classes/java/aotTest" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../userdao/build/generated/resources/aotTest" />
+    <content url="file://$MODULE_DIR$/../../userdao/build/generated/sources/aotTest" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="demo.main" scope="PROVIDED" />
+    <orderEntry type="module" module-name="demo.test" scope="PROVIDED" production-on-test="" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework.experimental:spring-native:0.9.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.hamcrest:hamcrest:2.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.junit.jupiter:junit-jupiter-api:5.6.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.junit.platform:junit-platform-commons:1.7.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apiguardian:apiguardian-api:1.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.opentest4j:opentest4j:1.2.0" level="project" />
+  </component>
+</module>
