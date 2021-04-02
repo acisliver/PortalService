@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 
 public class UserDaoTests {
@@ -57,6 +58,45 @@ public class UserDaoTests {
         assertThat(insertedUser.getName(), is(user.getName()));
         assertThat(insertedUser.getPassword(), is(user.getPassword()));
     }
+
+    @Test
+    public void update() throws SQLException {
+        String name = "daeeun";
+        String password = "171717";
+
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        userDao.insert(user);
+
+        user.setName("koko");
+        user.setPassword("1357");
+
+        userDao.update(user);
+
+        User updatedUser = userDao.findById(user.getId());
+
+        assertThat(updatedUser.getId(), is(user.getId()));
+        assertThat(updatedUser.getName(), is(user.getName()));
+        assertThat(updatedUser.getPassword(), is(user.getPassword()));
+    }
+
+    @Test
+    public void delete() throws SQLException {
+        String name = "daeeun";
+        String password = "171717";
+
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        userDao.insert(user);
+
+        userDao.delete(user.getId());
+
+        User deletedUser = userDao.findById(user.getId());
+
+        assertThat(deletedUser, nullValue());
+    }
 //    @Test
 //    public void getHalla() throws SQLException, ClassNotFoundException {
 //        UserDao userDao = new UserDao(new HallaConnectionMaker());
@@ -89,16 +129,3 @@ public class UserDaoTests {
 //    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
