@@ -11,7 +11,7 @@ public class DaoFactory {
     }
 
     @Bean
-    public JejuConnectionMaker connectionMaker() {
+    public ConnectionMaker connectionMaker() {
         return new JejuConnectionMaker();
     }
 }
