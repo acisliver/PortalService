@@ -11,49 +11,74 @@ public class UserDao {
     }
 
     public User findById(Integer id) throws SQLException {
-        Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "select * from userinfo where id = ?"
-        );
-        preparedStatement.setInt(1, id);
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User user;
+        try {
+            connection = dataSource.getConnection();
+            preparedStatement = connection.prepareStatement(
+                    "select * from userinfo where id = ?"
+            );
+            preparedStatement.setInt(1, id);
 
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
 
-        User user = new User();
-        user.setId(resultSet.getInt("id"));
-        user.setName(resultSet.getString("name"));
-        user.setPassword(resultSet.getString("password"));
-
-        resultSet.close();
-        preparedStatement.close();
-        connection.close();
-
+            user = new User();
+            user.setId(resultSet.getInt("id"));
+            user.setName(resultSet.getString("name"));
+            user.setPassword(resultSet.getString("password"));
+        } finally {
+            try {
+                resultSet.close();
+            } catch (Exception throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                connection.close();
+            } catch (Exception throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return user;
     }
 
     public void insert(User user) throws SQLException {
-        //DB 연결
-        Connection connection = dataSource.getConnection();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = dataSource.getConnection();
 
-        //SQL문 생성
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "insert into userinfo (name, password) values ( ?, ? )"
-                ,Statement.RETURN_GENERATED_KEYS
-        );
-        preparedStatement.setString(1, user.getName());
-        preparedStatement.setString(2, user.getPassword());
+            preparedStatement = connection.prepareStatement(
+                    "insert into userinfo (name, password) values ( ?, ? )"
+                    , Statement.RETURN_GENERATED_KEYS
+            );
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getPassword());
 
-        //SQL 실행
-        preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
-        ResultSet resultSet = preparedStatement.getGeneratedKeys();
-        resultSet.next();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
 
-        user.setId(resultSet.getInt(1));
-
-        resultSet.close();
-        preparedStatement.close();
-        connection.close();
+            user.setId(resultSet.getInt(1));
+        } finally {
+            try {
+                preparedStatement.close();
+            } catch (Exception throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                connection.close();
+            } catch (Exception throwables) {
+                throwables.printStackTrace();
+            }
+        }
     }
 }
