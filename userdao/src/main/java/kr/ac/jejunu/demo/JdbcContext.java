@@ -14,7 +14,7 @@ public class JdbcContext {
         this.dataSource = dataSource;
     }
 
-    User jdbcContextForFindById(Integer id, StatementStrategy statementStrategy) throws SQLException {
+    User jdbcContextForFindById(StatementStrategy statementStrategy) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -22,7 +22,7 @@ public class JdbcContext {
         try {
             connection = dataSource.getConnection();
 
-            preparedStatement = statementStrategy.makeStatement(id, connection);
+            preparedStatement = statementStrategy.makeStatement(connection);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 user = new User();
@@ -56,7 +56,7 @@ public class JdbcContext {
         try {
             connection = dataSource.getConnection();
 
-            preparedStatement = statementStrategy.makeStatement(user, connection);
+            preparedStatement = statementStrategy.makeStatement(connection);
 
             preparedStatement.executeUpdate();
 
@@ -78,13 +78,13 @@ public class JdbcContext {
         }
     }
 
-    void jdbcContextForUpdate(User user, StatementStrategy statementStrategy) throws SQLException {
+    void jdbcContextForUpdate(StatementStrategy statementStrategy) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = dataSource.getConnection();
 
-            preparedStatement = statementStrategy.makeStatement(user, connection);
+            preparedStatement = statementStrategy.makeStatement(connection);
 
 
             preparedStatement.executeUpdate();
@@ -103,13 +103,13 @@ public class JdbcContext {
         }
     }
 
-    void jdbcContextForDelete(Integer id, StatementStrategy statementStrategy) throws SQLException {
+    void jdbcContextForDelete(StatementStrategy statementStrategy) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = dataSource.getConnection();
 
-            preparedStatement = statementStrategy.makeStatement(id, connection);
+            preparedStatement = statementStrategy.makeStatement(connection);
 
         } finally {
             try {
