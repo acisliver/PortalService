@@ -12,14 +12,7 @@ public class UserDao {
     public User findById(Integer id) throws SQLException {
         String sql = "select * from userinfo where id = ?";
         Object[] params = new Object[]{id};
-        return jdbcContext.jdbcContextForFindById(connection -> {
-            
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            for(int i = 0; i < params.length; i++){
-                preparedStatement.setObject(i+1, params[i]);
-            }
-            return preparedStatement;
-        });
+        return jdbcContext.findById(sql, params);
     }
 
     public void insert(User user) throws SQLException {
