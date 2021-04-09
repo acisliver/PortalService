@@ -1,15 +1,17 @@
 package kr.ac.jejunu.demo;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JdbcContext {
-    private final UserDao userDao;
+    private final DataSource dataSource;
 
-    public JdbcContext(UserDao userDao) {
-        this.userDao = userDao;
+
+    public JdbcContext(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     User jdbcContextForFindById(Integer id, StatementStrategy statementStrategy) throws SQLException {
@@ -18,7 +20,7 @@ public class JdbcContext {
         ResultSet resultSet = null;
         User user = null;
         try {
-            connection = userDao.getDataSource().getConnection();
+            connection = dataSource.getConnection();
 
             preparedStatement = statementStrategy.makeStatement(id, connection);
             resultSet = preparedStatement.executeQuery();
@@ -52,7 +54,7 @@ public class JdbcContext {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            connection = userDao.getDataSource().getConnection();
+            connection = dataSource.getConnection();
 
             preparedStatement = statementStrategy.makeStatement(user, connection);
 
@@ -80,7 +82,7 @@ public class JdbcContext {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            connection = userDao.getDataSource().getConnection();
+            connection = dataSource.getConnection();
 
             preparedStatement = statementStrategy.makeStatement(user, connection);
 
@@ -105,7 +107,7 @@ public class JdbcContext {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            connection = userDao.getDataSource().getConnection();
+            connection = dataSource.getConnection();
 
             preparedStatement = statementStrategy.makeStatement(id, connection);
 

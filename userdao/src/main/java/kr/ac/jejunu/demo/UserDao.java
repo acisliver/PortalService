@@ -4,11 +4,10 @@ import javax.sql.DataSource;
 import java.sql.*;
 
 public class UserDao {
-    private final DataSource dataSource;
-    private final JdbcContext jdbcContext = new JdbcContext(this);
+    private final JdbcContext jdbcContext;
 
-    public UserDao(DataSource dataSource){
-        this.dataSource = dataSource;
+    public UserDao(JdbcContext jdbcContext){
+        this.jdbcContext = jdbcContext;
     }
 
     public User findById(Integer id) throws SQLException {
