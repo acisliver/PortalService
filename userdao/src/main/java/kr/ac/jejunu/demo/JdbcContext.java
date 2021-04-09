@@ -100,36 +100,10 @@ public class JdbcContext {
         }
     }
 
-    void jdbcContextForDelete(StatementStrategy statementStrategy) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = dataSource.getConnection();
-
-            preparedStatement = statementStrategy.makeStatement(connection);
-
-            preparedStatement.executeUpdate();
-        } finally {
-            try {
-                preparedStatement.close();
-            } catch (Exception throwables) {
-                throwables.printStackTrace();
-            }
-            try {
-                connection.close();
-            } catch (Exception throwables) {
-                throwables.printStackTrace();
-            }
-        }
-    }
-
     void update(String sql, Object[] params) throws SQLException {
-        jdbcContextForDelete(connection -> {
+        jdbcContextForUpdate(connection -> {
 
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    sql
-                    , Statement.RETURN_GENERATED_KEYS
-            );
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             for(int i = 0; i < params.length; i++){
                 preparedStatement.setObject(i+1, params[i]);
             }

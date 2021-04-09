@@ -14,9 +14,7 @@ public class UserDao {
         Object[] params = new Object[]{id};
         return jdbcContext.jdbcContextForFindById(connection -> {
             
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    sql
-            );
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             for(int i = 0; i < params.length; i++){
                 preparedStatement.setObject(i+1, params[i]);
             }
