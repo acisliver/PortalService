@@ -12,7 +12,8 @@ public class UserDao {
     }
 
     public User findById(Integer id) throws SQLException {
-        return jdbcContext.findById(id);
+        StatementStrategy statementStrategy = new FindByIdStatementStrategy();
+        return jdbcContext.jdbcContextForFindById(id, statementStrategy);
     }
 
     public void insert(User user) throws SQLException {
@@ -29,4 +30,5 @@ public class UserDao {
         StatementStrategy statementStrategy = new DeleteStatementStrategy();
         jdbcContext.jdbcContextForDelete(id, statementStrategy);
     }
+
 }

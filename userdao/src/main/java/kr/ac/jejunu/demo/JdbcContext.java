@@ -12,11 +12,6 @@ public class JdbcContext {
         this.userDao = userDao;
     }
 
-    public User findById(Integer id) throws SQLException {
-        StatementStrategy statementStrategy = new FindByIdStatementStrategy();
-        return jdbcContextForFindById(id, statementStrategy);
-    }
-
     User jdbcContextForFindById(Integer id, StatementStrategy statementStrategy) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
