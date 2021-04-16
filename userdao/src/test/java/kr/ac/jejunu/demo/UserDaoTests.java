@@ -20,10 +20,10 @@ public class UserDaoTests {
 
     @BeforeAll
     public static void setup() {
-//        ApplicationContext applicationContext
-//                = new AnnotationConfigApplicationContext(DaoFactory.class);
-        ClassPathXmlApplicationContext applicationContext =
-                new ClassPathXmlApplicationContext("daofactory.xml");
+        //        ClassPathXmlApplicationContext applicationContext =
+//                new ClassPathXmlApplicationContext("daofactory.xml");
+        ApplicationContext applicationContext
+                = new AnnotationConfigApplicationContext("kr.ac.jejunu.demo");
         userDao = applicationContext.getBean("userDao", UserDao.class);
     }
 
