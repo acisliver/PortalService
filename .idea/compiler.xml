@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="org.example.userdao" target="15" />
+      <module name="org.example.userdao.main" target="15" />
+      <module name="org.example.userdao.test" target="15" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
