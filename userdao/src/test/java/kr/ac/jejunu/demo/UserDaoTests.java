@@ -47,9 +47,7 @@ public class UserDaoTests {
         String name = "daeeun";
         String password = "171717";
 
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
+        User user = User.builder().name(name).password(password).build();
 
 //        DaoFactory daoFactory = new DaoFactory();
 //        UserDao userDao =daoFactory.getUserDao();

@@ -1,5 +1,6 @@
 package kr.ac.jejunu.demo;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -9,9 +10,10 @@ import org.springframework.stereotype.Component;
 import java.sql.*;
 
 @Component
+@RequiredArgsConstructor  //final로 지정된 것 생성자 자동 생성(의존성 주입도 자동)
 public class UserDao {
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+
+    private final JdbcTemplate jdbcTemplate;
 
     public User findById(Integer id) throws SQLException {
         String sql = "select * from userinfo where id = ?";

@@ -31,10 +31,6 @@ public class DaoFactory {
     public DataSource dataSource() throws ClassNotFoundException {
         SimpleDriverDataSource dataSource
                 = new SimpleDriverDataSource();
-//        className = "com.mysql.cj.jdbc.Driver";
-//        url = "jdbc:mysql://localhost/jeju?characterEncoding=utf-8&serverTimezone=UTC";
-//        username = "root";
-//        password = "1717";
         dataSource.setDriverClass((Class<? extends Driver>) Class.forName(className));
         dataSource.setUsername(username);
         dataSource.setPassword(password);
