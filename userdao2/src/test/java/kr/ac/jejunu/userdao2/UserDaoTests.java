@@ -40,9 +40,7 @@ public class UserDaoTests {
         String name = "hulk";
         String password = "1234";
 
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
+        User user = User.builder().name(name).password(password).build();
 
         userDao.insert(user);
 
