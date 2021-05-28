@@ -9,6 +9,7 @@
              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd ">
 
     <context:component-scan base-package="kr.ac.jejunu.userdao"/>
+    <annotation-driven/>
     <beans:bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <beans:property name="defaultViews">
             <beans:list>
@@ -17,13 +18,14 @@
             </beans:list>
         </beans:property>
     </beans:bean>
-<!--    <beans:bean name="/simple/user" class="kr.ac.jejunu.userdao.SimpleController">-->
-<!--        <beans:constructor-arg name="userDao" ref="userDao"/>-->
-<!--    </beans:bean>-->
     <beans:bean name="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/"/>
         <beans:property name="suffix" value=".jsp"/>
     </beans:bean>
+    <resources mapping="/images/**" location="/WEB-INF/static/" />
+    <!--    <beans:bean name="/simple/user" class="kr.ac.jejunu.userdao.SimpleController">-->
+    <!--        <beans:constructor-arg name="userDao" ref="userDao"/>-->
+    <!--    </beans:bean>-->
 <!--    <beans:bean class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter"/>-->
 <!--    <beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
 <!--        <beans:property name="mappings">-->
