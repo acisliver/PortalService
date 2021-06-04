@@ -23,6 +23,13 @@
         <beans:property name="suffix" value=".jsp"/>
     </beans:bean>
     <resources mapping="/images/**" location="/WEB-INF/static/" />
+
+    <interceptors>
+        <interceptor>
+            <mapping path="/**"/>
+            <beans:bean class="kr.ac.jejunu.userdao.UserIntercepter"/>
+        </interceptor>
+    </interceptors>
     <!--    <beans:bean name="/simple/user" class="kr.ac.jejunu.userdao.SimpleController">-->
     <!--        <beans:constructor-arg name="userDao" ref="userDao"/>-->
     <!--    </beans:bean>-->
